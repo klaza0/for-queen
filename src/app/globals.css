@@ -1,0 +1,204 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Arslan Wessam B";
+  src: url("/fonts/arslan-wessam-b.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Wessam Light";
+  src: url("/fonts/wessam-light.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.continue-arabic {
+  width: min(100%, 22rem);
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  overflow: visible;
+  padding: 0.7rem 1.35rem;
+  font-family: "Arslan Wessam B", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.9;
+  letter-spacing: 0;
+  white-space: normal;
+  text-align: center;
+}
+
+.arabic-wessam {
+  padding-block: 0.2em;
+  font-family: "Wessam Light", sans-serif;
+  letter-spacing: 0;
+  line-height: 2;
+}
+
+:root {
+  --background: #fff8f5;
+  --foreground: #49333d;
+  color-scheme: light;
+}
+
+@theme inline {
+  --color-background: #fff8f5;
+  --color-background-soft: #fce9ed;
+  --color-pink: #f4b8c7;
+  --color-rose: #d97998;
+  --color-deep: #a64d70;
+  --color-ink: #49333d;
+  --color-warm: #fffcfa;
+  --color-gold: #d6b38a;
+  --font-display: var(--font-cormorant), "Palatino Linotype", serif;
+  --font-serif: var(--font-playfair), Georgia, serif;
+  --font-sans: var(--font-dm), "Segoe UI", sans-serif;
+  --font-letter: var(--font-amiri), "Palatino Linotype", serif;
+  --font-script: var(--font-great-vibes), cursive;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100svh;
+  overflow-x: clip;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: #f4b8c7;
+  color: #49333d;
+}
+
+.paper {
+  background-color: #fffcfa;
+  background-image: radial-gradient(rgba(166, 77, 112, 0.06) 0.7px, transparent 0.7px);
+  background-size: 8px 8px;
+}
+
+.ambient-wash {
+  background:
+    radial-gradient(circle at 15% 10%, rgba(244, 184, 199, 0.55), transparent 32%),
+    radial-gradient(circle at 85% 20%, rgba(214, 179, 138, 0.28), transparent 28%),
+    linear-gradient(180deg, #fff8f5 0%, #fce9ed 50%, #fff8f5 100%);
+  background-size: 100% 140%;
+  animation: wash 18s ease-in-out infinite alternate;
+}
+
+.float-heart {
+  animation-name: rise;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.petal {
+  width: 14px;
+  height: 18px;
+  border-radius: 70% 10% 70% 10%;
+  background: #f4b8c7;
+  opacity: 0.55;
+  animation: drift 14s linear infinite;
+}
+
+.sparkle {
+  width: 4px;
+  height: 4px;
+  border-radius: 999px;
+  background: #d6b38a;
+  animation: twinkle 3.4s ease-in-out infinite;
+}
+
+.rise-piece {
+  animation: rise-piece 2.2s ease-out forwards;
+}
+
+.music-bar {
+  height: 14px;
+  animation: bars 0.8s ease-in-out infinite;
+  transform-origin: bottom;
+}
+
+.signature-line {
+  transform-origin: left;
+  animation: sign 0.8s ease 0.4s both;
+}
+
+.infinity-stroke {
+  stroke-dasharray: 140;
+  stroke-dashoffset: 140;
+  animation: draw 2.4s ease forwards;
+}
+
+@media (max-width: 768px) {
+  .petal,
+  .sparkle {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+
+  .ambient-wash,
+  .float-heart,
+  .petal,
+  .sparkle,
+  .music-bar,
+  .signature-line,
+  .infinity-stroke {
+    animation: none !important;
+  }
+}
+
+@keyframes wash {
+  from { background-position: 0% 0%; }
+  to { background-position: 0% 100%; }
+}
+
+@keyframes rise {
+  from { transform: translateY(0); opacity: 0; }
+  12% { opacity: 0.7; }
+  100% { transform: translateY(-110vh); opacity: 0; }
+}
+
+@keyframes drift {
+  from { transform: translate3d(0, 0, 0) rotate(0deg); }
+  to { transform: translate3d(24px, 40px, 0) rotate(18deg); }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.9; }
+}
+
+@keyframes rise-piece {
+  to { transform: translate3d(var(--drift), -240px, 0); opacity: 0; }
+}
+
+@keyframes bars {
+  0%, 100% { transform: scaleY(0.35); }
+  50% { transform: scaleY(1); }
+}
+
+@keyframes draw {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes sign {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
