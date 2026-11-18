@@ -23,8 +23,9 @@ export function BalloonBackground({ active }: BalloonBackgroundProps) {
 
   useEffect(() => {
     if (!active) return;
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+    const canvasNode = canvasRef.current;
+    if (!canvasNode) return;
+    const canvas: HTMLCanvasElement = canvasNode;
     const context = canvas.getContext("2d");
     if (!context) return;
     const ctx = context;
