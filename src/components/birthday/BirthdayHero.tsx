@@ -158,14 +158,14 @@ export function BirthdayHero({ onContinue }: { onContinue: () => void }) {
   }
 
   return (
-    <section className="relative mx-auto flex min-h-[100svh] w-full max-w-4xl flex-col items-center justify-center overflow-hidden px-5 py-16 text-center">
+    <section className="relative isolate flex min-h-dvh w-full flex-col items-center justify-center overflow-hidden px-5 pt-16 pb-32 text-center sm:pb-16">
       <canvas ref={canvasRef} className="pointer-events-none absolute inset-0 h-full w-full" aria-hidden="true" />
       <BalloonBackground active={blown} />
       <div ref={veilRef} className="pointer-events-none absolute inset-0 z-[4] bg-[#241018] opacity-0" />
       <div className="pointer-events-none absolute inset-0 z-[5]">
         <CelebrationParticles active={burst} />
       </div>
-      <div className={`pointer-events-none relative z-10 transition-opacity duration-700 ${revealed || reduce ? "opacity-100" : "opacity-0"}`}>
+      <div className={`pointer-events-none relative z-10 w-full max-w-4xl transition-opacity duration-700 ${revealed || reduce ? "opacity-100" : "opacity-0"}`}>
         <motion.h2
           className="font-serif text-5xl text-balance text-ink sm:text-7xl"
           initial={reduce ? false : { opacity: 0, y: 12 }}
