@@ -189,7 +189,7 @@ export function BalloonBackground({ active }: BalloonBackgroundProps) {
     }
 
     function countForWidth() {
-      return window.matchMedia("(max-width: 768px)").matches ? 12 : 22;
+      return view.width <= 768 ? 12 : 22;
     }
 
     function clearSpawns() {
@@ -199,8 +199,17 @@ export function BalloonBackground({ active }: BalloonBackgroundProps) {
 
     function resize() {
       const ratio = Math.min(window.devicePixelRatio || 1, 2);
-      view.width = canvas.clientWidth || window.innerWidth;
-      view.height = canvas.clientHeight || window.innerHeight;
+      const width = canvas.clientWidth;
+      const height = canvas.clientHeight;
+      if (!width || !height) return;
+      if (
+        view.width === width &&
+        view.height === height &&
+        canvas.width === Math.floor(width * ratio) &&
+        canvas.height === Math.floor(height * ratio)
+      ) return;
+      view.width = width;
+      view.height = height;
       canvas.width = Math.max(1, Math.floor(view.width * ratio));
       canvas.height = Math.max(1, Math.floor(view.height * ratio));
       ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
@@ -252,12 +261,15 @@ export function BalloonBackground({ active }: BalloonBackgroundProps) {
     }
 
     resize();
+    const resizeObserver = new ResizeObserver(resize);
+    resizeObserver.observe(canvas);
 
     if (reduced) {
       window.addEventListener("resize", resize);
       return () => {
         alive = false;
         clearSpawns();
+        resizeObserver.disconnect();
         window.removeEventListener("resize", resize);
       };
     }
@@ -278,6 +290,7 @@ export function BalloonBackground({ active }: BalloonBackgroundProps) {
       alive = false;
       window.cancelAnimationFrame(frame);
       clearSpawns();
+      resizeObserver.disconnect();
       canvas.removeEventListener("pointermove", onPointer);
       canvas.removeEventListener("pointerdown", onPointer);
       canvas.removeEventListener("pointerup", onPointerEnd);
