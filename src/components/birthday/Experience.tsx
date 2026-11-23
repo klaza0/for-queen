@@ -36,7 +36,7 @@ export function Experience() {
       <AnimatePresence mode="wait">
         <motion.main
           key={`${step}-${run}`}
-          className="pb-28"
+          className={step === "birthday" ? "min-h-dvh" : "pb-28"}
           initial={reduce ? false : { opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           exit={reduce ? undefined : { opacity: 0, y: -14 }}
