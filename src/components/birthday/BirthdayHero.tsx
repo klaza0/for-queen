@@ -176,6 +176,9 @@ export function BirthdayHero({ onContinue }: { onContinue: () => void }) {
         <p className="arabic-wessam mx-auto mt-4 max-w-md text-lg text-ink/75 sm:text-2xl" dir="rtl" lang="ar">
           ٧ فبراير.. يوم ما الدنيا نورت بوجودك ❤️
         </p>
+        <p className="arabic-wessam mx-auto mt-2 max-w-md text-base text-deep sm:text-lg" dir="rtl" lang="ar">
+          اضغطي علي البلالين هتفرقع ^^
+        </p>
         <Cake blown={blown} />
         {!blown && (
           <button
