@@ -6,7 +6,6 @@ export const queen = {
   projectName: "For Queen",
   birthdayLabel: "February 7",
   pin: "0702",
-  photo: "/images/queen.jpg",
   audio: "/audio/birthday-song.mp3",
   signature: "with all my love",
   letter: [

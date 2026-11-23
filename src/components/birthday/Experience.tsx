@@ -8,11 +8,10 @@ import { EnvelopeLetter } from "@/components/birthday/EnvelopeLetter";
 import { FinalSurprise } from "@/components/birthday/FinalSurprise";
 import { FloatingMusicPlayer } from "@/components/birthday/FloatingMusicPlayer";
 import { FriendshipTimeline } from "@/components/birthday/FriendshipTimeline";
-import { QueenPortrait } from "@/components/birthday/QueenPortrait";
 import { ScratchGallery } from "@/components/birthday/ScratchCard";
 import { SecretDateLock } from "@/components/birthday/SecretDateLock";
 
-const steps = ["lock", "letter", "birthday", "portrait", "scratch", "timeline", "gift"] as const;
+const steps = ["lock", "letter", "birthday", "scratch", "timeline", "gift"] as const;
 type Step = (typeof steps)[number];
 
 export function Experience() {
@@ -46,7 +45,6 @@ export function Experience() {
           {step === "lock" && <SecretDateLock onUnlock={next} />}
           {step === "letter" && <EnvelopeLetter onContinue={next} />}
           {step === "birthday" && <BirthdayHero onContinue={next} />}
-          {step === "portrait" && <QueenPortrait onContinue={next} />}
           {step === "scratch" && <ScratchGallery onContinue={next} />}
           {step === "timeline" && <FriendshipTimeline onContinue={next} />}
           {step === "gift" && (
